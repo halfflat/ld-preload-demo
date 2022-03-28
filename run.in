@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+
+echo "- ex1: cheese+ has a dependency on biscuits"
+./ex1
+
+echo
+echo "- ex2: cheese missing a dependency on biscuits"
+./ex2
+
+echo
+echo "- ex3: cheese missing a dependency on biscuits, but ex3 linked against biscuits"
+./ex3
+
+echo
+echo "- ex2, but LD_PRELOAD biscuits"
+LD_PRELOAD=./libbiscuits.so ./ex2
