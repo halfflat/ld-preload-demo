@@ -42,7 +42,7 @@ M4REDEF:=-DLD_PRELOAD=DYLD_INSERT_LIBRARIES
 endif
 
 run: run.in
-	M4 $(M4REDEF) $< > $@
+	m4 $(M4REDEF) $< > $@
 	chmod +x $@
 
 clean:
