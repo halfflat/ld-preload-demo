@@ -11,6 +11,11 @@ echo
 echo "- ex3: cheese missing a dependency on biscuits, but ex3 linked against biscuits"
 ./ex3
 
+# On most platforms, LD_PRELOAD is the environment variable to set to preload a
+# shared object; on Darwin, it's DYLD_INSERT_LIBRARIES. The string PRELOAD
+# below in the run.in template is replaced with the appropriate environment
+# variable via m4 in the Makefile.
+
 echo
 echo "- ex2, but LD_PRELOAD biscuits"
-LD_PRELOAD=./libbiscuits.so ./ex2
+PRELOAD=./libbiscuits.so ./ex2

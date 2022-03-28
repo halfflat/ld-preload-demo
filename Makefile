@@ -8,9 +8,6 @@ RPATH=-Wl,-rpath $(PWD)
 endif
 LDFLAGS+=-L. $(RPATH)
 
-# On Darwin :/
-# LDFLAGS+=-L. -Wl,-rpath $(PWD)
-
 biscuits.o: CFLAGS+=-fPIC
 biscuits.o: biscuits.c
 
@@ -36,13 +33,13 @@ ex3: main.o
 	$(CC) -dynamic $(LDFLAGS) -o $@ $< -L. -lcheese -lbiscuits
 
 ifneq ($(UNAME),Darwin)
-M4REDEF:=
+PRELOADVAR:=LD_PRELOAD
 else
-M4REDEF:=-DLD_PRELOAD=DYLD_INSERT_LIBRARIES
+PRELOADVAR:=DYLD_INSERT_LIBRARIES
 endif
 
 run: run.in
-	m4 $(M4REDEF) $< > $@
+	m4 -DPRELOAD=$(PRELOADVAR) $< > $@
 	chmod +x $@
 
 clean:
