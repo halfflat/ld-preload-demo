@@ -17,5 +17,5 @@ echo "- ex3: cheese missing a dependency on biscuits, but ex3 linked against bis
 # variable via m4 in the Makefile.
 
 echo
-echo "- ex2, but LD_PRELOAD biscuits"
+echo "- ex2, but preload biscuits via environment variable"
 PRELOAD=./libbiscuits.so ./ex2
